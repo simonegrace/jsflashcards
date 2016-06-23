@@ -10,9 +10,12 @@
 </head>
 <body>
 
-<p id="header">Javascript Study Cards</p>
+<p id="header">Javascript Study Cards <a href="#">Flip Q/A</a></p>
+
 <div id="card">
 	<div id = "cardContent">
+		<button id="button array" onclick="arrayChosen()" >Study Arrays</button>
+		<button id="button" onclick="stringhosen()" >Study Strings</button>
 		<div id = "showQuestion"></div><br>
 		<input type="textarea" id="TextInput" placeholder="Your answer" COLS=40 ROWS=6 style="overflow: scroll"><br><br>
 		 <button id="button" onclick="showAnswer()" >See answer</button>
@@ -23,7 +26,8 @@
 
 var qa = [
 
-// About string methods
+// About string methods. To access, qa[0]
+[
 	{q: "What does the length property do?",
 	 a: "returns the length of a string"},
 	{q: "What does the indexOf() method do?",
@@ -40,11 +44,58 @@ var qa = [
 	 a: "It is similar to slice(). The difference is that the second parameter specifies the length of the extracted part."},
 	{q: "What does the replace() method do?",
 	 a: "replaces a specified value with another value in a string"}
+], 
+
+// stuff from freeCodeCamp -- Array methods. To access, qa[1]
+[
+	{q: "What does the map method do?",
+	 a: "iterate through every element of the array, creating a new array with values that have been modified by the callback function, and return it."},
+	{q: "What does the pop() method do?",
+	 a: "removes last element of array"},
+	{q: "What does the unshift() method do?",
+	 a: "adds new items to the beginning of an array and returns the new length"},
+	{q: "What does the shift() method do?",
+	 a: "removes the 1st item in the array"},
+	{q: "What does the join() method do?",
+	 a: "join each element of an array into a string separated by whatever delimiter you provide as an argument."},
+	{q: "How to use the join method to form a seamless string?",
+	 a: "Pass an empty string '' as an argument."},
+	{q: "What does the reduce() method do?",
+	 a: "iterate through an array and condense it into one value. Arguments: acumulator, current value"},
+	{q: "What does the filter method do?",
+	 a: "iterate through an array and filter out elements where a given condition is not true."},
+	{q: "What does the sort method do? How does a compare function work within it?",
+	 a: "sort the values in an array alphabetically or numerically. sort can be passed a compare function as a callback. The compare function should return a negative number if a should be before b, a positive number if a should be after b, or 0 if they are equal."},
+	{q: "What does the reverse method do?",
+	 a: "reverse the elements of an array."},
+	{q: "What does the concat method do?",
+	 a:" takes an array as an argument and returns a new array with the elements of this array concatenated onto the end."},
+	{q: "What does the split method do?",
+	 a: "split a string into an array. split uses the argument you pass in as a delimiter to determine which points the string should be split at."},
+	{q: "How do you split a string into an array, character by character?",
+	 a: "Pass an empty array ''"}
+]
 ]
 
-var randomNumber = Math.floor(Math.random() * qa.length);
-var randomQ = qa[randomNumber].q;
-var answer = qa[randomNumber].a;
+// by default, 'arrayByTopic' combines all objects in every topic-specific array
+var arrayByTopic = qa[0].concat(qa[1]);
+
+// if 'Strings' button is clicked, 'arrayBytopic' is narrowed to qa[0]
+function stringChosen() {
+	arrayByTopic = qa[0];
+	return reload;
+
+};
+
+// if 'Arrays' button is clicked, 'arrayBytopic' is narrowed to qa[1]
+function arrayChosen() {
+	arrayByTopic = qa[1];
+	return reload;
+};
+
+var randomNumber = Math.floor(Math.random() * arrayByTopic.length);
+var randomQ = arrayByTopic[randomNumber].q;
+var answer = arrayByTopic[randomNumber].a;
 
 
 window.onload = init;
